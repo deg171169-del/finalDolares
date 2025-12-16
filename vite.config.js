@@ -8,7 +8,15 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools(),
+    // vueDevTools(),
+    {
+      name: 'full reload',
+      handleHotUpdate({ server }) {
+        server.ws.send({ type: "full-reload" })
+        return []
+      }
+    }
+
   ],
   resolve: {
     alias: {
